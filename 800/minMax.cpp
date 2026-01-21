@@ -26,7 +26,7 @@ void minMax(vector<int>& arr) {
 
 int main() {
 
-    int n = 10;
+    int n = 1000;
 
     
     vector<int> best(n);
@@ -44,7 +44,14 @@ int main() {
     cout << "worst: ";
     minMax(worst);
 
-    vector<int>avg = {5,7,9,3,4,0,2,6,1,8} ;
+    vector<int>avg(n);
+    for(int i =0 ; i < n ; i++ ){
+        avg[i] = i ; 
+
+    }
+
+    random_shuffle(avg.begin() , avg.end()) ; 
+
 
     cout << "avg : " << endl ; 
     minMax(avg) ; 

@@ -1,6 +1,10 @@
 #include <bits/stdc++.h>
 using namespace std ; 
 
+int bubbleCnt =0 ; 
+int selectionCnt = 0 ; 
+
+
 struct Item{
     int value ; 
     int originalIndex ; 
@@ -14,6 +18,7 @@ void selectionSort(vector<Item>&arr){
         for( int j = i +1 ; j < n ; j++ ){
             if(arr[i].value > arr[j].value){
                 minIndex = j; 
+                selectionCnt++ ;
             }
 
         }
@@ -26,6 +31,7 @@ void bubbleSort(vector<Item>&arr){
         for( int j = 0 ; j < arr.size() - i - 1 ; j++ ){
             if(arr[j].value > arr[j+1].value){
                 swap(arr[j] , arr[j+1]) ; 
+                bubbleCnt++ ;
             }
         }
     }
@@ -117,7 +123,7 @@ bool isStable(vector<Item>&arr){
 
 
 int main(){
-    vector<Item> arr = {{5, 0}, {3, 1}, {5, 2}, {2, 3}, {3, 4}};
+    vector<Item> arr = {{5, 0}, {3, 1}, {5, 2}, {2, 3}, {3, 4} , {1, 5}, {4, 6}, {1, 7}, {2, 8}, {4, 9}};
 
     selectionSort(arr);
     cout << "Selection Sort: " << (isStable(arr) ? "Stable" : "Not Stable") << endl;
@@ -137,5 +143,8 @@ int main(){
     arr = {{5, 0}, {3, 1}, {5, 2}, {2, 3}, {3, 4}};
     quickSort(arr, 0, arr.size() - 1);
     cout << "Quick Sort: " << (isStable(arr) ? "Stable" : "Not Stable") << endl;
+
+    cout << "Bubble Sort Comparisons: " << bubbleCnt << endl;
+    cout << "Selection Sort Comparisons: " << selectionCnt << endl;
 
 }

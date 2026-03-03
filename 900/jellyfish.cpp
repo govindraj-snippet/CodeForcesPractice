@@ -6,6 +6,9 @@ int main(){
     cin >> t ; 
     while(t--){
         int maxValue ; 
+
+
+        
         cin >> maxValue ; 
         int start ; 
         cin >> start;

@@ -1,7 +1,6 @@
 # include <bits/stdc++.h>
 using namespace std ; 
 
-
 int isSafe( int i , int j , vector<vector<int>>&grid ){
     int row = i ; 
     int col = j ; 
@@ -27,20 +26,53 @@ int isSafe( int i , int j , vector<vector<int>>&grid ){
     return 1 ;
 }
 
-void placeQueens( int row , int n , vector<vector<int>>&grid , vector<vector<int>>&result ){
+void placeQueens( int row , int n , vector<vector<int>>&grid , vector<vector<pair<int, int >>>&result ){
 
     if(row == n  ){
-        vector<int>ans ; 
+        vector<pair < int , int >>ans ; 
         for(int i = 0 ; i < n ; i++ ){
             for( int j = 0 ; j < n ; j++ ){
-                ans.push_back(j +1 ) ; 
+                ans.push_back({ i + 1 , j + 1 } ) ; 
             }
         }
         result.push_back(ans) ; 
+        return ; 
     }
+    for(int i = 0 ; i < n ; i++ ){
+        for(int j = 0 ; j < n ; j++ ){
+            if(isSafe(i , j , grid )){
+                grid[i][j] = 1 ; 
+                placeQueens(row + 1 , n , grid , result ) ; 
+                grid[i][j] = 0 ; 
+            }
+        }
+    }
+
+}
+
+vector<vector<pair< int , int >>> nQueens( int n  ){
+    vector<vector<pair< int , int >>> result ; 
+    //vector<vector<int>>> grid( n , vector<int>(n , 0 )) ; 
+    vector<vector<int>>grid( n , vector<int>( n , 0 )) ; 
+
+    placeQueens(1 , n , grid , result ); 
+
+    return result ; 
+
+
 }
 
 int main(){
     int n ; 
+    cout << "Enter the table size " ; 
+    cin >> n ; 
+    
+    vector<vector<pair < int , int >>>ans = nQueens(n) ; 
+    for(int i = 0 ; i < ans.size() ; i++ ){
+        for(int j = 0 ; j < ans[i].size() ; j++ ){
+
+        }
+    }
+    return 0 ; 
 
 }
